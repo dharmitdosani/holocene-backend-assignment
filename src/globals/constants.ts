@@ -1,3 +1,3 @@
 export const MONGO_COLLECTIONS = {
-    LOAD_PLANS: 'load-plans',
-}
+  LOAD_PLANS: "load-plans",
+};

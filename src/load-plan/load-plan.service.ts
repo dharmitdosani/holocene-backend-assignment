@@ -1,12 +1,12 @@
-import { Injectable } from '@nestjs/common';
-import { InjectModel } from '@nestjs/mongoose';
-import { Model } from 'mongoose';
-import { PlanDto } from './load-plan.dto';
-import { Plan } from './load-plan.schema';
+import { Injectable } from "@nestjs/common";
+import { InjectModel } from "@nestjs/mongoose";
+import { Model } from "mongoose";
+import { PlanDto } from "./load-plan.dto";
+import { Plan } from "./load-plan.schema";
 
 @Injectable()
 export class LoadPlanService {
-  constructor(@InjectModel(Plan.name) private planModel: Model<Plan>) { }
+  constructor(@InjectModel(Plan.name) private planModel: Model<Plan>) {}
 
   findAll(): Promise<Plan[]> {
     // get all plans from the db except for the deleted ones and return
@@ -16,7 +16,7 @@ export class LoadPlanService {
   async bulkActions(plansDto: PlanDto[]): Promise<Plan[]> {
     const currentPlans = await this.planModel.find(
       { deletedAt: { $exists: false } },
-      { projection: { _id: 1 } },
+      { projection: { _id: 1 } }
     );
     const currentIdsSet = new Set(currentPlans.map((p) => p._id.toString()));
 
