@@ -8,7 +8,7 @@ import { LoadPlanModule } from './load-plan/load-plan.module';
 @Module({
   imports: [
     ConfigModule.forRoot({
-      envFilePath: '.env.development',
+      envFilePath: '.env',
     }),
     MongooseModule.forRoot(process.env.MONGO_CONNECTION_STRING, {
       dbName: 'shipments',
