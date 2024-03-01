@@ -1,7 +1,5 @@
 import { Type } from 'class-transformer';
 import {
-  ArrayMaxSize,
-  ArrayMinSize,
   IsBoolean,
   IsNumber,
   IsOptional,
@@ -12,7 +10,7 @@ import {
 export class PlanDto {
   @IsOptional()
   @IsString()
-  readonly id: string;
+  readonly _id: string;
 
   @IsString()
   readonly color: string;
@@ -43,8 +41,6 @@ export class PlanDto {
 }
 
 export class LoadPlanRequestDto {
-  @ArrayMinSize(1, { message: 'At least one plan must be provided.' })
-  @ArrayMaxSize(100, { message: 'Maximum of 100 plans allowed.' })
   @ValidateNested({ each: true })
   @Type(() => PlanDto)
   readonly plans: PlanDto[];
